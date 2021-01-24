@@ -6,7 +6,7 @@ var ExtractJwt = require('passport-jwt').ExtractJwt;
 var jwt = require('jsonwebtoken');
 
 var config = require('./config');
-
+var roleDef = config.roleDef;
 //'local strategy'
 exports.local = passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -38,5 +38,10 @@ exports.jwtPassport = passport.use(new JwtStrategy( opts, (jwt_payload, done)=>{
     });
     
 }));
+
+//Role based Authorization
+exports.roleCheck = function(userRole, permissionRole) {
+    return roleDef[userRole].includes(permissionRole);
+};
 
 exports.verifyUser = passport.authenticate('jwt', {session:false});

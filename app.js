@@ -9,6 +9,10 @@ var config = require('./config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var tweetRouter = require('./routes/tweetRouter');
+var adminRouter = require('./routes/adminRouter');
+var superAdminRouter = require('./routes/superAdminRouter');
+
 
 const mongoose = require('mongoose');
 
@@ -37,6 +41,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tweets', tweetRouter);
+app.use('/admin', adminRouter);
+app.use('/superAdmin', superAdminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var autoIncrement = require('mongoose-auto-increment');
 
 const tweetSchema = new Schema({
     tweetContent:{
@@ -15,13 +16,19 @@ const tweetSchema = new Schema({
         default: 0
     },
     author:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Number,
         ref: 'User'
     },
-    replies:[replySchema]
+    lastAuthor:{
+        type: Number,
+        ref: 'User'
+    }
 },{
     timestamps:true
 });
 
-var Tweets = mongoose.model('Dish',tweetSchema);
+autoIncrement.initialize(mongoose.connection);
+tweetSchema.plugin(autoIncrement.plugin, 'tweetId');
+
+var Tweets = mongoose.model('Tweet',tweetSchema);
 module.exports = Tweets;
