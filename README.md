@@ -1,6 +1,7 @@
 # oslash-backend-twitter
 
 Postman Collection - https://www.getpostman.com/collections/0e01b93687c2c1bd2dab
+
 user details
 	name
 	email
