@@ -1,1 +1,1 @@
-for api documentation see olash-backend-twitter-readme.txt
+for api documentation see twitter-backend-readme.txt
